@@ -15,10 +15,16 @@ int main(){
     float raio= 50.0f;
     int res =100;
 
+
+
     while(!glfwWindowShouldClose(window)){
         glClear(GL_COLOR_BUFFER_BIT);
         glBegin(GL_TRIANGLE_FAN);
         glVertex2d(centrox,centroy);
+
+        for(int i = 0; i<= res; ++i){
+            
+        }
 
         glfwSwapBuffers(window);
         glfwPollEvents();
