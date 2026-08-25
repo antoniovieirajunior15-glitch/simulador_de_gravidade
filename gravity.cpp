@@ -1,13 +1,43 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <vector>
+#include <iostream>
+#include <cmath>
+
+const char* vertexShaderSource = R"glsl(
+#version 330 core
+layout (location = 0) in vec3 aPos;
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+void main(){
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+}
+)glsl";
+
+const char* fragmentShaderSource = R"glsl(
+#version 330 core
+uniform vec3 objectColor;
+void main(){
+    gl_FragColor = vec4(objectColor, objectColor.a);
+}
+)glsl";
+
+
+
 
 float screenHeight = 600.0f;
 float screenWidth = 800.0f;
 
 
-const float G = 6.67430 * pow() // Gravitational constant
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm:: vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+const float G = 6.67430 * pow(10,-11); // Gravitational constant
 
 GLFWwindow* StartGLFW();
 
