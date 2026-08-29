@@ -16,8 +16,10 @@ uniform mat4 view;
 uniform mat4 projection;
 void main(){
     gl_Position = projection * view * model * vec4(aPos, 1.0);
-}
-)glsl";
+    vec3 worldPos = vec3(model * vec4(aPos, 1.0)).xyz;
+    vec3 normal = normalize(aPos);
+    vec3 dirTocenter = normalize(-worldPos);
+    lightIntensity = 2.0 *max(dot(normal, dirTocenter), 0.15);})glsl";
 
 const char* fragmentShaderSource = R"glsl(
 #version 330 core
