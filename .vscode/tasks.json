@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "build",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "${workspaceFolder}/gravity.cpp",
+        "-o",
+        "${workspaceFolder}/gravity_sim",
+        "-I/opt/homebrew/include",
+        "-L/opt/homebrew/lib",
+        "-lglfw",
+        "-lGLEW",
+        "-framework", "OpenGL"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": ["$gcc"],
+      "group": { "kind": "build", "isDefault": true }
+    }
+  ],
+  "version": "2.0.0"
+}
